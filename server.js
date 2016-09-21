@@ -72,13 +72,14 @@ var articles={
 	date:'',
 	content:`
 		<p>Hi!, I am Ranjeet. I live in mumbai. I love this course.</p>		
-		<h2> Personal<\h2>
-		<p1> This is my personal website</p1>
-		<h2> Professional<\h2>
+		<p> Personal<\hp>
+		<p> This is my personal website</p>
+		<p> Professional<\p>
 		<p> This is a list of my work experiences:<\p>
 		<style scoped>
       			p { color: red; }
     		</style>
+		<p> This should print in red </p>
 		<ol>
 			<li> Company A:  </li>
 			<li> Company B:  </li>
@@ -151,6 +152,31 @@ var articles={
                 </div>
         
             </div>
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//rksin.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
         
         </body>
         
