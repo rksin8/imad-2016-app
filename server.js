@@ -1,4 +1,3 @@
-//http://localhost:8080/article-one
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
@@ -6,30 +5,190 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+//different part of html page
+/*
+var articleOne={
+        title:"Article One | Ranjeet Singh",
+        heading:"Article One",
+        date:'Sep, 19, 2016',
+        content:`<p>
+                       This is my first article. this is the comtent of my article 
+                    </p>
+                    
+                    <p>
+                       This is my first article. this is the comtent of my article 
+                    </p>
+                    
+                    
+                    <p>
+                       This is my first article. this is the comtent of my article 
+                    </p>`
+    
+};
+
+var articleTwo={
+        title:"Article One | Ranjeet Singh",
+        heading:"Article Two",
+        date:'Sep, 20, 2016',
+        content:`<p>
+                       This is my first article. this is the comtent of my article 
+                    </p>
+                    
+                    <p>
+                       This is my first article. this is the comtent of my article 
+                    </p>
+                    
+                    
+                    <p>
+                       This is my first article. this is the comtent of my article 
+                    </p>`
+    
+};
+
+var articleThree={
+        title:"Article Three | Ranjeet Singh",
+        heading:"Article Three",
+        date:'Sep, 21, 2016',
+        content:`<p>
+                       This is my first article. this is the comtent of my article 
+                    </p>
+                    
+                    <p>
+                       This is my first article. this is the comtent of my article 
+                    </p>
+                    
+                    
+                    <p>
+                       This is my first article. this is the comtent of my article 
+                    </p>`
+    
+};
+*/
+
+var articles={
+    'about':{
+        title:'Ranjeet Singh',
+        heading:'Ranjeet Singh',
+	date:'',
+	content:`
+		<p>Hi!, I am Ranjeet. I live in mumbai. I love this course.</p>		
+		<h2> Personal<\h2>
+		<p1> This is my personal website</p1>
+		<h2> Professional<\h2>
+		<p> This is a list of my work experiences:<\p>
+		<style scoped>
+      			p { color: red; }
+    		</style>
+		<ol>
+			<li> Company A:  </li>
+			<li> Company B:  </li>
+		</ol>`
+		
+	},
+    'article-one':{
+        title: 'Article One | Ranjeet Singh',
+        heading: 'Article One',
+        date: 'Sep, 19, 2016',
+        content:`
+	<p>
+                 This is my first article. 
+       
+        </p>`
+    
+        
+    },
+    'article-two':{
+        title: 'Article Two | Ranjeet Singh',
+        heading: 'Article Two',
+        date: 'Sep, 20, 2016',
+        content:`<p>
+                       This is my 2nd article.
+                 </p>`
+    
+    },
+    'article-three':{
+        title: 'Article Three | Ranjeet Singh',
+        heading: 'Article Three',
+        date: 'Sep, 21, 2016',
+        content:`<p>
+                      This is my 3rd article.
+                    </p>`
+                
+    }
+};
+
+//Common part of html page, copy html and remove the common portion
+ function createTemplate(data){
+    var title = data.title;
+    var heading = data.heading;
+    var date = data.date;
+    var content = data.content;
+    var htmlTemplate = `<html>
+        <head>
+                <title>
+                    ${title}
+                </title>
+        	        <meta name="Viewport" content="width=device-width, intial-scale=1"/>
+        	        <link href="/ui/style.css" rel="stylesheet" />
+        </head>
+        <body>
+           <div class="container">
+        
+                <div>
+                    <a href="/">Home</a>
+                </div>
+            	<hr/>
+                <h3>
+                    ${heading}
+                </h3>
+                <div>
+                    ${date}
+                </div>
+                
+                <div>
+                    ${content}
+                    
+                </div>
+        
+            </div>
+        
+        </body>
+        
+    </html>
+    `;
+    return htmlTemplate;
+}
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+app.get('/:articleName', function (req, res) {
+    //articleName==article-one
+  var articleName=req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
+});
+
+/*
 app.get('/article-one', function (req, res) {
-	//res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
-	res.send('Article one requested and will be served here');
+// res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+//res.send(createTemplate(articleOne));
 });
-
-
+/*
 app.get('/article-two', function (req, res) {
-         //res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
-        res.send('Article two requested and will be served here');
+// res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+res.send(createTemplate(articleTwo));
 });
 
- app.get('/article-three', function (req, res) {
-          //res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
-         res.send('Article three requested and will be served here');
- });
+app.get('/article-three', function (req, res) {
+// res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+res.send(createTemplate(articleThree));
+});
+*/
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
-
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
@@ -39,3 +198,4 @@ var port = 8080; // Use 8080 for local development because you might already hav
 app.listen(8080, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
+
