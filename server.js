@@ -2,6 +2,16 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 
+var Pool = require('pg').Pool;
+// you can optionally supply other values
+var config = {
+  host: 'http://db.imad.hasura-app.io',
+  port:'5432',
+  user: 'rksin8',
+  password: process.env.DB_PASSWORD,
+  database: 'rksin8',
+};
+
 var app = express();
 app.use(morgan('combined'));
 
@@ -185,17 +195,39 @@ var articles={
     return htmlTemplate;
 }
 
+
+
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+var pool = new Pool(config);
+
+app.get('/:articleName', function (req, res) {
+    pool.query("SELECT * from test", function(err,resulr){
+        if(err){
+            res.status(500).send(err.toSting());
+        }else{
+            res.send(JSON.String(fy(results)));
+        }
+       
+        
+    });
+  var articleName=req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
+});
+
+
+
+/*
 app.get('/:articleName', function (req, res) {
     //articleName==article-one
   var articleName=req.params.articleName;
   res.send(createTemplate(articles[articleName]));
 });
 
-/*
+
 app.get('/article-one', function (req, res) {
 // res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
 //res.send(createTemplate(articleOne));
