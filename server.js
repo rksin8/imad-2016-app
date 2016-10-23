@@ -212,27 +212,15 @@ app.get('/test-db', function (req, res) {
         if(err){
             res.status(500).send(err.toString());
         }else{
-            res.send(JSON.Stringfy(results));
+            res.send(JSON.stringify(result));
         }
        
         
     });
  
 });
-/*
-app.get('/test-db', function (req, res) {
-    pool.query("SELECT * from test", function(err,resulr){
-        if(err){
-            res.status(500).send(err.toString());
-        }else{
-            res.send(JSON.String(fy(results)));
-        }
-       
-        
-    });
- 
-});
-*/
+
+
 /*
 
 
