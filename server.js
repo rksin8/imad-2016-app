@@ -233,7 +233,7 @@ app.get('/test-db', function (req, res) {
  
 });
 */
-
+/*
 
 
 app.get('/articles:articleName', function (req, res) {
@@ -250,13 +250,11 @@ app.get('/articles:articleName', function (req, res) {
               res.send(createTemplate(articleData));
           }
       }
-      
-      
   });
   res.send(createTemplate(articles[articleName]));
 });
 
-/*
+
 app.get('/article-one', function (req, res) {
 // res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
 //res.send(createTemplate(articleOne));
