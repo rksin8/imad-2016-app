@@ -214,8 +214,7 @@ app.get('/test-db', function (req, res) {
        
         
     });
-  var articleName=req.params.articleName;
-  res.send(createTemplate(articles[articleName]));
+ 
 });
 
 
