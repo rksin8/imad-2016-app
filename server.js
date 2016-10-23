@@ -5,11 +5,11 @@ var path = require('path');
 var Pool = require('pg').Pool;
 // you can optionally supply other values
 var config = {
-  host: 'http://db.imad.hasura-app.io',
+  host: 'db.imad.hasura-app.io',
   port:'5432',
-  user: 'rksin8',
-  password: process.env.DB_PASSWORD,
   database: 'rksin8',
+  user: 'rksin8',
+  password: process.env.DB_PASSWORD
 };
 
 var app = express();
